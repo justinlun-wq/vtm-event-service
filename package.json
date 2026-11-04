@@ -1,0 +1,12 @@
+{
+  "name": "vtm-event-service",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "python3 build.py",
+    "test": "node verify.cjs && python3 verify_html.py"
+  }
+}

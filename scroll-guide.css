@@ -1,0 +1,26 @@
+/* 桌面直接顯示活動名稱；窄螢幕改為底部文字分頁，不依賴 hover。 */
+.activity-scroll-guide{position:fixed;right:max(16px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);z-index:15;width:178px;color:#22354e;font-size:13px}
+.guide-segments{display:flex;flex-direction:column;gap:4px;background:#fffffff5;border:1px solid #d4dfe7;border-radius:12px;padding:6px;box-shadow:0 3px 16px #1b2b4b12;backdrop-filter:blur(10px)}
+.guide-stop{--guide-color:#187d74;position:relative;display:grid;grid-template-columns:7px minmax(0,1fr);gap:12px;align-items:center;width:100%;min-height:60px;border:1px solid transparent;background:transparent;color:#536271;border-radius:7px;padding:10px;text-align:left;cursor:pointer;min-width:0}
+.guide-stop.team{--guide-color:#64518d}.guide-stop.industry{--guide-color:#315d7d}
+.guide-track{display:block;position:relative;width:5px;height:34px;border:1px solid var(--guide-color);background:color-mix(in srgb,var(--guide-color) 12%,white);border-radius:3px;overflow:hidden}
+.guide-fill{display:block;position:absolute;inset:0 0 auto;height:var(--section-progress,0%);background:var(--guide-color)}
+.guide-name{display:block;position:static;white-space:normal;overflow-wrap:break-word;font-size:13px;line-height:1.5;font-weight:500;opacity:1;visibility:visible}
+.guide-stop.is-active{color:#172344;background:color-mix(in srgb,var(--guide-color) 9%,white);border-color:color-mix(in srgb,var(--guide-color) 35%,white)}
+.guide-stop.is-active .guide-name{font-weight:700}.guide-stop.is-active .guide-track{width:7px}.guide-stop:hover{background:#f0f4f7;color:#172344}
+.has-scroll-guide main{padding-right:210px}.has-scroll-guide .wrap{padding-right:32px}
+/* 手機及平板保留完整內容寬度，分頁按鈕至少 44 px 高，並照顧 iPhone 底部安全範圍。 */
+@media(max-width:1100px){
+ .activity-scroll-guide{top:auto;right:max(8px,env(safe-area-inset-right));left:max(8px,env(safe-area-inset-left));bottom:calc(8px + env(safe-area-inset-bottom,0px));width:auto;transform:none;max-width:600px;margin-inline:auto}
+ .guide-segments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:5px;border-radius:12px}
+ .guide-stop{display:flex;align-items:center;justify-content:center;min-height:62px;padding:10px 7px 13px;text-align:center}
+ .guide-track{position:absolute;left:8px;right:8px;bottom:5px;top:auto;width:auto;height:3px;border:0;border-radius:2px}
+ .guide-fill{height:100%;width:var(--section-progress,0%)}.guide-stop.is-active .guide-track{width:auto}
+ .guide-name{font-size:12px;line-height:1.4;font-weight:500}.guide-stop.is-active .guide-name{font-weight:700}
+ .has-scroll-guide main{padding-right:0}.has-scroll-guide .wrap{padding-right:32px}
+ .has-scroll-guide{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px));scroll-padding-bottom:100px}
+}
+@media(max-width:760px){.has-scroll-guide .wrap{padding-right:20px}}
+@media(max-width:359px){.guide-stop{min-height:66px;padding-inline:5px}.guide-name{font-size:11px}}
+@media(prefers-reduced-motion:no-preference){.guide-stop{transition:background-color .15s,border-color .15s}}
+@media print{.activity-scroll-guide{display:none!important}.has-scroll-guide main{padding-right:0}.has-scroll-guide{padding-bottom:0}}
