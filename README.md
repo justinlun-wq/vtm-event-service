@@ -2,6 +2,8 @@
 
 完整、可離線開啟及交畀自己 AI 修改的網站。B 版是首頁，A、C 版保留作比較；企業服務名稱為 **Team Building**。
 
+直接瀏覽網站：https://justinlun-wq.github.io/vtm-event-service/
+
 Repository：https://github.com/justinlun-wq/vtm-event-service
 
 ## 不需要 Git 或 GitHub 帳戶
@@ -63,3 +65,7 @@ python3 verify_html.py
 相片及商標由各自權利人持有，公開原始碼不代表素材獲重新授權。新增或重新使用素材前應確認使用權。
 
 自動驗證涵蓋三款活動、Hover／鍵盤／觸控事件邏輯、19 個參考、15 個相簿／49 張相片及查詢摘要。畫面仍需於桌面及手機瀏覽器檢視；自動檢查不代替視覺驗收。
+
+## 公開預覽發布
+
+此 GitHub repository 的 main 分支通過檢查後，會自動把 dist 發布至上述 GitHub Pages 網址。這只更新公開協作預覽，不會修改 VTM 正式網站或原有私人 Sites 預覽。
