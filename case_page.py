@@ -9,7 +9,7 @@ REFMAP={r['id']:r for r in REFS}
 
 def link(c):return 'case-'+c['id']+'.html'
 def facts(c):
-    return '<dl class="case-facts">'+''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}</dd><small>{e(d)}</small></div>' for a,b,d in c['facts'])+'</dl>'
+    return '<dl class="case-facts">'+''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}<small>{e(d)}</small></dd></div>' for a,b,d in c['facts'])+'</dl>'
 def property_art():
     return '<div class="process-art" role="img" aria-label="VR 介紹、分組體驗與討論、分享回顧的流程示意"><span>VR 安全情境培訓</span><div><b>情境預覽</b><i aria-hidden="true"></i><b>體驗與討論</b><i aria-hidden="true"></i><b>分享回顧</b></div><small>由工作情境，連繫日常需要</small></div>'
 def card(c):
