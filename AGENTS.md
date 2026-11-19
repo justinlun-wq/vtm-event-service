@@ -4,19 +4,25 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 
 ## Accepted direction
 
-- B is primary at dist/index.html and dist/b-event-journey.html. Retain A, B, C and comparison pages.
+- The case-led page is primary at dist/index.html. Its six static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
 - B hero has real service-related photographs behind readable overlay text. Mouse hover, keyboard focus and touch/click select the same photo, copy and journey. Respect reduced motion.
 - Use **Team Building**, never Team Spirit. Copy uses concise written Hong Kong Traditional Chinese with spaces around English and numbers.
 - Keep white cards, neutral page backgrounds and inner theme accents; do not restore full-width theme-color bands.
 - Keep illustrated timed steps, takeaway tickets and scoped galleries. 30 people, 2.5 hours and 90 m² are planning examples, not verified client outcomes.
-- Preserve the 19 approved references, including Safety Forum 2024 and GCSFE 2023: 15 albums / 49 photos and four document-only records. Do not invent photos or claim clients bought the proposed programs.
+- Preserve the 19 approved references, including Safety Forum 2024 and GCSFE 2023: the original 15 albums / 49 photos and four document-only records. Add HAESL as the twentieth reference: six web-optimised photographs, bringing the selection to 16 albums / 55 photos. Do not invent photos or claim clients bought the proposed programs.
 - Keep Sino Inno Lab under Team Building, newest-first albums, the landscape June school cover, bounded portrait frames and professional CTAs.
+
+- Use actual dates/participation/content where numeric case measurements are absent. The anonymous aviation safety figures come from the supplied case design; HAESL photographs are a separate event and do not establish those figures. Keep planning examples separate.
+- HKIC (Sheung Shui) photographs await the owner. Add them when supplied; keep the visitor page free of empty albums or invented images.
+- Case-page enquiry prepares a mailto draft; display that the visitor must confirm/send in their email client.
 
 ## Source map
 
 | Source | Responsibility |
 | --- | --- |
-| build.py | Program names, shared page shell, asset composition, output mapping |
+| build.py | Build entry and original A/B/C shell |
+| case_page.py, cases.json | Case homepage, six details, verified public copy |
+| case-page.css, case-page-overrides.css, case-page.js | Responsive case layout, filters, gallery search, capacity estimator, mailto draft |
 | visitor_layouts.py | A/B/C and comparison markup |
 | visitor.js | Public copy, activity rendering, hero selection, enquiry logic |
 | visitor.css, program-design.css | Responsive hero, journeys, illustrations, takeaway cards |
@@ -36,7 +42,7 @@ node verify.cjs
 python3 verify_html.py
 ```
 
-./setup.sh checks prerequisites and runs the same sequence. qa/ is ignored generated test output. Open dist/index.html, or use python3 -m http.server 8000 --directory dist. After visual changes check 390px, 768px and desktop widths, hero readability, all three selections, keyboard focus and a portrait photo dialog. Report any browser checks that could not be performed.
+./setup.sh checks prerequisites and runs the same sequence. qa/ is ignored generated test output. Open dist/index.html, or use python3 -m http.server 8000 --directory dist. After visual changes check 390px, 768px and desktop widths, case/detail navigation, filters/search, capacity presets and invalid inputs, enquiry field preservation and validation, floorplan zoom/focus return, all three original service selections and a portrait photo dialog. Report any browser checks that could not be performed.
 
 ## Boundaries
 

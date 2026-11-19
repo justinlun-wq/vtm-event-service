@@ -1,4 +1,4 @@
-"""生成三款活動服務頁面，相片隨附於 assets，避免預覽依賴外部套件。"""
+"""生成案例主頁、獨立詳情及原有三款活動版面，相片隨附於 assets。"""
 from pathlib import Path
 import json
 
@@ -50,3 +50,8 @@ for filename,title,mode,body in [
     (DIST/filename).write_text(shell(title,mode,body,filename),encoding='utf-8')
 
 print('Generated 5 HTML pages with local photo assets in', DIST)
+
+# 新主頁採用案例結構，原有 A／B／C 仍各自保留。
+from case_page import build as build_case_pages
+build_case_pages()
+print("Generated case homepage and 6 detail pages")

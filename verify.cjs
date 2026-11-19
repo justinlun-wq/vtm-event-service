@@ -129,8 +129,25 @@ function snapshot(name, html) {
   assert.match(story.get('hero-title').innerHTML,/探索新科技/);
   assert.ok(!story.get('hero-team').classList.values.has('is-active'));
   const primary=fs.readFileSync(path.join(root,'dist','index.html'),'utf8');
-  assert.match(primary,/data-mode="story"/);
+  assert.match(primary,/data-mode="cases"/);
   assert.ok(!primary.includes('Team Spirit'));
+  // 新首頁與獨立詳情是同一份案例資料；原有三版仍按原互動驗收。
+  new vm.Script(fs.readFileSync(path.join(root,'case-page.js'),'utf8'));
+  const cases=JSON.parse(fs.readFileSync(path.join(root,'cases.json'),'utf8'));
+  assert.equal(cases.length,6);
+  assert.equal((primary.match(/class="event-card"/g)||[]).length,6);
+  for(const c of cases){
+    assert.equal(c.facts.length,4);
+    assert.ok(primary.includes('case-'+c.id+'.html'));
+    const detail=fs.readFileSync(path.join(root,'dist','case-'+c.id+'.html'),'utf8');
+    assert.ok(detail.includes(c.title));
+    for(const word of ['[待填]','平面圖待補','undefined','[object Object]'])assert.ok(!detail.includes(word));
+    if(c.reference)assert.ok(JSON.parse(fs.readFileSync(path.join(root,'references.json'),'utf8')).some(r=>r.id===c.reference));
+  }
+  const aviation=cases.find(c=>c.id==='aviation-safety');
+  assert.equal(aviation.facts[0][1],'48 m²');
+  assert.ok(fs.readFileSync(path.join(root,'dist','case-aviation-safety.html'),'utf8').includes('第一天於 09:45 開始'));
+
 
   const planner = load('c-needs-planner.html', 'planner');
   for (const id of ['discovery', 'team', 'industry']) {
@@ -159,10 +176,9 @@ function snapshot(name, html) {
   assert.deepEqual(fallback.downloads, ['XR-Event-Enquiry.txt']);
   assert.match(fallback.get('copy-status').textContent, /下載文字摘要/);
 
-  load('index.html', 'catalog');
   load('compare.html', 'home');
   const references = JSON.parse(fs.readFileSync(path.join(root,'references.json'),'utf8'));
-  assert.equal(references.length,19);
+  assert.equal(references.length,20);
   assert.ok(references.some(r=>r.id==='safety-forum-2024'));
   assert.equal(references.find(r=>r.id==='gcsfe').date,'2023');
   for(const ref of references)assert.ok(!/[（(]/.test(ref.date));
@@ -174,11 +190,11 @@ function snapshot(name, html) {
   assert.ok(!fs.readFileSync(path.join(root,'dist','index.html'),'utf8').includes('<nav class="jump"')); 
   assert.ok(!references.some(r=>r.id==='construction'));
   assert.ok(!full.includes('建造業安全訓練 · 現場素材'));
-  assert.equal(references.filter(r=>r.images.length).length,15);
+  assert.equal(references.filter(r=>r.images.length).length,16);
   assert.equal(references.filter(r=>!r.images.length).length,4);
-  assert.equal((full.match(/class="case-album"/g)||[]).length,15);
+  assert.equal((full.match(/class="case-album"/g)||[]).length,16);
   const represented = [...full.matchAll(/data-case="([^"]+)"/g)].map(m=>m[1]);
-  assert.equal(represented.length,19);assert.equal(new Set(represented).size,19);
+  assert.equal(represented.length,20);assert.equal(new Set(represented).size,20);
   for(const ref of references){
     const button={dataset:{case:ref.id}};
     catalog.documentListeners.click({target:{closest: selector => selector==='[data-case]'?button:null}});
@@ -193,5 +209,5 @@ function snapshot(name, html) {
   const arrow={dataset:{caseScroll:'discovery',direction:'1'}};
   catalog.documentListeners.click({target:{closest: selector => selector==='[data-case-scroll]'?arrow:null}});
   assert.equal(catalog.get('case-track-discovery').scrollLeft,800);
-  console.log('PASS: five pages; nine illustrated steps; 19 selected references; 15 albums and 4 document entries; all case dialogs; horizontal controls; program/planner/enquiry interactions.');
+  console.log('PASS: case homepage and 6 detail pages; original A/B/C; nine illustrated steps; 20 selected references; 16 albums and 4 document entries; all case dialogs; horizontal controls; program/planner/enquiry interactions.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -664,5 +664,52 @@
         "height": 1536
       }
     ]
+  },
+  {
+    "id": "haesl",
+    "name": "HAESL · VR Zone",
+    "date": "2026.10.13",
+    "summary": "企業活動中的 VR 體驗區，結合頭戴裝置體驗、平板講解與現場操作帶領。",
+    "scope": [
+      "VR 體驗區及展示屏幕配置",
+      "頭戴裝置體驗與現場操作帶領",
+      "平板講解及參加者交流"
+    ],
+    "public": [],
+    "images": [
+      "assets/references/haesl-1.webp",
+      "assets/references/haesl-2.webp",
+      "assets/references/haesl-3.webp",
+      "assets/references/haesl-4.webp",
+      "assets/references/haesl-5.webp",
+      "assets/references/haesl-6.webp"
+    ],
+    "imageDimensions": [
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "program": "industry"
   }
 ]

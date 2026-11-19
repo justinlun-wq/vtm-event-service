@@ -1,0 +1,3 @@
+/* 共用舊版相簿對話框，只覆寫新版需要的字級及連結排版。 */
+.reference-dialog .lightbox-top{z-index:3}.reference-meta span{font-size:14px}.reference-scope summary,.reference-scope details a,.reference-scope ul{font-size:16px}.reference-scope .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 20px;background:var(--navy);color:#fff;border-radius:5px;text-decoration:none;font-weight:700}.document-only-note{font-size:16px}.reference-photo-frame figcaption{font-size:13px}.reference-scope details:has(summary:only-child){display:none}
+@media(max-width:760px){.reference-dialog{width:94vw;max-height:92svh}.reference-meta,.reference-scope{padding:20px}.reference-photos{padding-inline:16px}}
