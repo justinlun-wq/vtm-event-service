@@ -54,4 +54,4 @@ print('Generated 5 HTML pages with local photo assets in', DIST)
 # 新主頁採用案例結構，原有 A／B／C 仍各自保留。
 from case_page import build as build_case_pages
 build_case_pages()
-print("Generated case homepage and 6 detail pages")
+print("Generated case homepage and detail pages from cases.json")

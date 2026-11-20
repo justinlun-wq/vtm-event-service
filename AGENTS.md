@@ -4,7 +4,7 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 
 ## Accepted direction
 
-- The case-led page is primary at dist/index.html. Its six static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
+- The case-led page is primary at dist/index.html. Its static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
 - B hero has real service-related photographs behind readable overlay text. Mouse hover, keyboard focus and touch/click select the same photo, copy and journey. Respect reduced motion.
 - Use **Team Building**, never Team Spirit. Copy uses concise written Hong Kong Traditional Chinese with spaces around English and numbers.
 - Keep white cards, neutral page backgrounds and inner theme accents; do not restore full-width theme-color bands.
@@ -13,7 +13,7 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 - Keep Sino Inno Lab under Team Building, newest-first albums, the landscape June school cover, bounded portrait frames and professional CTAs.
 
 - Use actual dates/participation/content where numeric case measurements are absent. The anonymous aviation safety figures come from the supplied case design; HAESL photographs are a separate event and do not establish those figures. Keep planning examples separate.
-- HKIC (Sheung Shui) photographs await the owner. Add them when supplied; keep the visitor page free of empty albums or invented images.
+- HKIC (Sheung Shui), 2026-10-29, uses six owner-authorized web selections. Retain its case and album; the full 22-photo collection stays in private Library. Derive case count from supported event records, never a fixed target.
 - Case-page enquiry prepares a mailto draft; display that the visitor must confirm/send in their email client.
 
 ## Source map
@@ -21,7 +21,7 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 | Source | Responsibility |
 | --- | --- |
 | build.py | Build entry and original A/B/C shell |
-| case_page.py, cases.json | Case homepage, six details, verified public copy |
+| case_page.py, cases.json | Case homepage, detail pages, verified public copy |
 | case-page.css, case-page-overrides.css, case-page.js | Responsive case layout, filters, gallery search, capacity estimator, mailto draft |
 | visitor_layouts.py | A/B/C and comparison markup |
 | visitor.js | Public copy, activity rendering, hero selection, enquiry logic |

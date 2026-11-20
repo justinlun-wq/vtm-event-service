@@ -711,5 +711,52 @@
       }
     ],
     "program": "industry"
+  },
+  {
+    "id": "hkic",
+    "name": "HKIC（上水）· XR 體驗活動",
+    "date": "2026.10.29",
+    "summary": "在 HKIC（上水）活動現場，透過頭戴裝置體驗、平板講解及操作帶領，與參加者交流 XR 應用。",
+    "scope": [
+      "頭戴裝置體驗及操作帶領",
+      "平板輔助講解",
+      "現場示範與交流"
+    ],
+    "public": [],
+    "images": [
+      "assets/references/hkic-1.webp",
+      "assets/references/hkic-2.webp",
+      "assets/references/hkic-3.webp",
+      "assets/references/hkic-4.webp",
+      "assets/references/hkic-5.webp",
+      "assets/references/hkic-6.webp"
+    ],
+    "imageDimensions": [
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "program": "industry"
   }
 ]
