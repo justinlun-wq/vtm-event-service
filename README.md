@@ -99,3 +99,5 @@ Gallery 按活動分 Album：每個活動一張封面，點入後只切換該活
 新示範內容由 `demos.json`、`demo_plans.py`、`demo-plans.js`、`demo-plans.css` 維護；其配置不代表保證接待量或已完成客戶活動。
 
 五款方案卡沿用封面卡樣式，封面為可隨規模切換的 Floor Plan；卡片下方及詳情頁附真實活動參考相，連到五個對應 Portfolio。三個活動目標比較補回 25／105／20 分鐘 Timeline。參考相與示意配置分開標示，未將 Team Building 的假設任務套用到實際 Sino 教育工作坊。
+
+最新 Thumbnail 指示：五款入口卡改回分類 Icon，Floor Plan 留在詳情頁；參考相、Portfolio 連結及目標 Timeline 保留。
