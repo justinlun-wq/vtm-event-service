@@ -4,7 +4,7 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 
 ## Accepted direction
 
-- Overall layout follows the supplied colleague Event Case Design v2 PDF/HTML. Keep its navy/white/teal styling, page proportions and small/medium/large selector; make only the owner-requested local changes. The homepage photo section is an album gallery: exactly one cover per event, with zoom/previous/next restricted to that event’s photos. Keep album filters/search and the full selected collection.
+- Overall layout follows the supplied colleague Event Case Design v2 PDF/HTML. Keep its navy/white/teal styling, page proportions and small/medium/large filter within the case collection, combined independently with event type; make only the owner-requested local changes. The homepage photo section is an album gallery: exactly one cover per event, with zoom/previous/next restricted to that event’s photos. Keep album filters/search and the full selected collection.
 
 - The case-led page is primary at dist/index.html. Its static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
 - B hero has real service-related photographs behind readable overlay text. Mouse hover, keyboard focus and touch/click select the same photo, copy and journey. Respect reduced motion.
@@ -54,3 +54,5 @@ python3 verify_html.py
 - Do not invent photo permissions or delivered work. Public source availability does not relicense photographs or branding.
 - Keep assets bundled; do not add tracking or remote scripts for routine edits.
 - Add Chinese comments for nontrivial behavior. Return a full modified ZIP or reviewable branch with regenerated dist, validation results and limitations.
+
+- Case-card facts use simple line icons with short values; keep accessible labels and full explanations on detail pages.

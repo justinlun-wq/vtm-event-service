@@ -8,13 +8,13 @@
   let count=0;
   cards.forEach(card=>{const show=(category==='all'||card.dataset.category===category)&&(format==='all'||card.dataset.format===format);card.hidden=!show;if(show)count++;});
   categoryButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.eventFilter===category)));
-  all('[data-format-filter]').forEach(a=>a.classList.toggle('is-selected',a.dataset.formatFilter===format));
+  all('[data-format-filter]').forEach(a=>{a.classList.toggle('is-selected',a.dataset.formatFilter===format);a.setAttribute('aria-pressed',String(a.dataset.formatFilter===format));});
   const status=document.getElementById('case-filter-status');
-  if(status)status.textContent=(format==='all'?'':({classroom:'課室與小組工作坊',zone:'活動體驗區',expo:'論壇與展覽展示'}[format]+' · '))+`顯示 ${count} 個活動案例`;
+  if(status)status.textContent=(format==='all'?'':({classroom:'小型',zone:'中型',expo:'大型'}[format]+' · '))+`顯示 ${count} 個活動案例`;
   const empty=document.getElementById('case-empty');if(empty)empty.hidden=count>0;
  }
- categoryButtons.forEach(b=>b.addEventListener('click',()=>{category=b.dataset.eventFilter;format='all';filterCases();}));
- all('[data-format-filter]').forEach(a=>a.addEventListener('click',()=>{format=a.dataset.formatFilter;category='all';filterCases();}));
+ categoryButtons.forEach(b=>b.addEventListener('click',()=>{category=b.dataset.eventFilter;filterCases();}));
+ all('[data-format-filter]').forEach(a=>a.addEventListener('click',()=>{format=a.dataset.formatFilter;filterCases();}));
  if(categoryButtons.length)filterCases();
  // 一個活動一個相簿；搜尋及分類只篩選相簿封面。
  const photos=all('.gallery-photo'),galleryButtons=all('[data-gallery-filter]');

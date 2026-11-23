@@ -8,13 +8,33 @@ REFS=json.loads((ROOT/'references.json').read_text())
 REFMAP={r['id']:r for r in REFS}
 
 def link(c):return 'case-'+c['id']+'.html'
-def facts(c):
-    return '<dl class="case-facts">'+''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}<small>{e(d)}</small></dd></div>' for a,b,d in c['facts'])+'</dl>'
+def fact_icon(label):
+    # 圖示按欄位意義選擇；真正標籤仍留在語意化 dt 供輔助閱讀。
+    paths={
+        'calendar':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/>',
+        'users':'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-16a3 3 0 0 1 0 6m4 10v-3a6 6 0 0 0-4-5"/>',
+        'pin':'<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+        'area':'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17 17 7M11 7h6v6M7 11v6h6"/>',
+        'clock':'<circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/>',
+        'headset':'<path d="M6 7V6a6 6 0 0 1 12 0v1M4 7h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4l-4-3-4 3H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><path d="M7 11h2m6 0h2"/>'}
+    if '日期' in label or '年份' in label:kind='calendar'
+    elif '規模' in label or '同時' in label:kind='users'
+    elif '地點' in label:kind='pin'
+    elif '場地' in label:kind='area'
+    elif '安排' in label or '形式' in label:kind='clock'
+    else:kind='headset'
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+paths[kind]+'</svg>'
+
+def facts(c,compact=False):
+    def item(label,value,description):
+        term=('<span class="fact-sr-only">'+e(label)+'</span>'+fact_icon(label)) if compact else e(label)
+        return f'<div><dt title="{e(label)}">{term}</dt><dd>{e(value)}<small>{e(description)}</small></dd></div>'
+    return '<dl class="case-facts'+(' card-facts' if compact else '')+'">'+''.join(item(*fact) for fact in c['facts'])+'</dl>'
 def property_art():
     return '<div class="process-art" role="img" aria-label="VR 介紹、分組體驗與討論、分享回顧的流程示意"><span>VR 安全情境培訓</span><div><b>情境預覽</b><i aria-hidden="true"></i><b>體驗與討論</b><i aria-hidden="true"></i><b>分享回顧</b></div><small>由工作情境，連繫日常需要</small></div>'
 def card(c):
-    visual=f'<img src="{c["cover"]}" alt="{e(c["title"])}'+('配置示意' if c['id']=='aviation-safety' else '現場')+'" width="800" height="520" loading="lazy">' if c['cover'] else property_art()
-    return f'''<article class="event-card" data-category="{c['filter']}" data-format="{c['format']}"><a class="event-card-link" href="{link(c)}"><div class="event-cover {'diagram-cover' if c['id']=='aviation-safety' else ''}">{visual}<span class="cover-label">{e(c['label'])}</span></div><div class="event-card-body"><p class="eyebrow">{e(c['category'])}</p><h3>{e(c['title'])}</h3>{facts(c)}<span class="card-action">查看活動安排<span aria-hidden="true">＋</span></span></div></a></article>'''
+    visual=f'<img src="{c["cover"]}" alt="{e(c["title"])}'+('配置示意' if c['cover'] and c['cover'].endswith('.svg') else '現場')+'" width="800" height="520" loading="lazy">' if c['cover'] else property_art()
+    return f'''<article class="event-card" data-category="{c['filter']}" data-format="{c['format']}"><a class="event-card-link" href="{link(c)}"><div class="event-cover {'diagram-cover' if c['cover'] and c['cover'].endswith('.svg') else ''}">{visual}<span class="cover-label">{e(c['label'])}</span></div><div class="event-card-body"><p class="eyebrow">{e(c['category'])}</p><h3>{e(c['title'])}</h3>{facts(c,True)}<span class="card-action">查看活動安排<span aria-hidden="true">＋</span></span></div></a></article>'''
 
 def ref_filter(r):
     if r['id'] in ['haesl','mtr','hsbc-hangseng']:return 'corporate'
@@ -58,9 +78,9 @@ def shell(title,body,filename):
 
 def homepage():
     buttons=''.join(f'<button type="button" data-event-filter="{k}" aria-pressed="{str(k=="all").lower()}">{v}</button>' for k,v in [('all','全部'),('corporate','企業'),('school','學校與學院'),('property','物管'),('expo','論壇與展覽')])
-    forms=''.join(f'<a class="format-tile" href="#cases" data-format-filter="{k}"><span class="format-icon" aria-hidden="true">{symbol}</span><span><strong>{title}</strong><small>{desc}</small></span><span class="format-open" aria-hidden="true">＋</span></a>' for k,symbol,title,desc in [('classroom','◎','小型','一間課室或活動室'),('zone','▦','中型','活動中的一個體驗區或攤位'),('expo','◇','大型','禮堂、論壇或大型展覽')])
+    sizes=''.join(f'<button type="button" data-format-filter="{k}" aria-pressed="{str(k=="all").lower()}" title="{e(desc)}">{title}</button>' for k,title,desc in [('all','全部','所有場地規模'),('classroom','小型','一間課室或活動室'),('zone','中型','活動中的一個體驗區或攤位'),('expo','大型','禮堂、論壇或大型展覽')])
     hero='''<section class="case-hero"><div class="wrap hero-layout"><div><p class="eyebrow">XR 活動服務</p><h1>先看真實案例，<br>再估算你的 XR 活動。</h1><p class="hero-intro">由學校工作坊、企業員工活動，到安全推廣及展覽體驗區。看看現場如何安排，再按你的人數、時間與場地商討內容。</p><a class="button mint" href="#cases">查看活動案例</a></div><aside class="hero-questions"><p>每個案例，都從你的需要出發</p><ul><li>場地如何配置？</li><li>參加者如何輪流體驗？</li><li>一場活動如何安排？</li><li>你和 VTM 分別準備甚麼？</li></ul></aside></div></section>'''
-    return '<main id="main">'+hero+'<section class="wrap formats" aria-labelledby="formats-title"><h2 id="formats-title">你的活動大概有多大？</h2><div class="format-grid">'+forms+'</div></section><section class="section wrap" id="cases"><div class="section-heading"><div><p class="eyebrow">從現場，看見安排</p><h2>活動案例</h2><p>選擇一個案例，了解體驗內容、參與方式及籌備重點。</p></div></div><div class="chips case-filters" role="group" aria-label="篩選活動案例">'+buttons+'</div><p class="filter-status" id="case-filter-status" role="status" aria-live="polite"></p><div class="case-grid">'+''.join(card(c) for c in CASES)+'</div><p class="empty-state" id="case-empty" hidden>這個分類暫時沒有案例，請選擇其他活動形式。</p></section>'+programs()+gallery()+enquiry()+'</main>'
+    return '<main id="main">'+hero+'<section class="section wrap" id="cases"><div class="section-heading"><div><p class="eyebrow">從現場，看見安排</p><h2>活動案例</h2><p>選擇一個案例，了解體驗內容、參與方式及籌備重點。</p></div></div><div class="case-filter-group"><span class="case-filter-label">活動類型</span><div class="chips case-filters" role="group" aria-label="篩選活動類型">'+buttons+'</div></div><div class="case-filter-group"><span class="case-filter-label">場地規模</span><div class="chips" role="group" aria-label="篩選場地規模">'+sizes+'</div></div><p class="filter-status" id="case-filter-status" role="status" aria-live="polite"></p><div class="case-grid">'+''.join(card(c) for c in CASES)+'</div><p class="empty-state" id="case-empty" hidden>暫時沒有符合這組篩選的案例，請調整活動類型或場地規模。</p></section>'+programs()+gallery()+enquiry()+'</main>'
 
 def checklist(items):return '<ul class="checklist">'+''.join('<li>'+e(x)+'</li>' for x in items)+'</ul>'
 def aviation_extra():
