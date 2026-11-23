@@ -190,7 +190,7 @@ if(caseDialog){let returnCaseFocus=null;document.addEventListener('click',e=>{
   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.demoSize===current.size)));
   const values={area:current.area+' m²',stations:current.stations+' 人',staff:current.staff+' 人',duration:current.minutes+' 分鐘'};
   all('[data-demo-fact]').forEach(el=>el.textContent=values[el.dataset.demoFact]);
-  const image=document.getElementById('demo-floorplan');image.src=current.floorplan;image.alt=demo.title+' · '+current.label+'配置示例';document.getElementById('demo-plan-large').src=current.floorplan;
+  const image=document.getElementById('demo-floorplan');image.src=current.floorplan;image.alt=demo.title+' · '+current.label+'配置示例';
   all('[data-demo-dimensions]').forEach(el=>el.textContent=`${current.width} × ${current.depth} m`);all('[data-demo-people]').forEach(el=>el.textContent=current.people);all('[data-demo-stations]').forEach(el=>el.textContent=current.stations+' 個');all('[data-demo-staff]').forEach(el=>el.textContent=current.staff+' 名');
   // 各階段以五分鐘單位分配，最後一段補足總時數。
   const parts=[.1,.65,.15],times=parts.map(p=>Math.round(current.minutes*p/5)*5);times.push(current.minutes-times.reduce((a,b)=>a+b,0));let elapsed=0;
@@ -199,6 +199,5 @@ if(caseDialog){let returnCaseFocus=null;document.addEventListener('click',e=>{
   all('[data-enquiry]').forEach(a=>a.dataset.enquiry=demo.title+' · '+current.label+' · '+current.area+' m² 規劃示例');estimate();
  }
  buttons.forEach(b=>b.addEventListener('click',()=>{current=demo.layouts.find(l=>l.size===b.dataset.demoSize);render();}));input.addEventListener('input',estimate);render();
- const dialog=document.getElementById('demo-plan-dialog'),open=document.getElementById('demo-open-plan');open.addEventListener('click',()=>dialog.showModal());document.getElementById('demo-plan-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog.addEventListener('close',()=>open.focus());
 })();
 </script></body></html>
