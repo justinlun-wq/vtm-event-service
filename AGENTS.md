@@ -12,7 +12,7 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 - Preserve the 19 approved references, including Safety Forum 2024 and GCSFE 2023: the original 15 albums / 49 photos and four document-only records. Add HAESL as the twentieth reference: six web-optimised photographs, bringing the selection to 16 albums / 55 photos. Do not invent photos or claim clients bought the proposed programs.
 - Keep Sino Inno Lab under Team Building, newest-first albums, the landscape June school cover, bounded portrait frames and professional CTAs.
 
-- Use actual dates/participation/content where numeric case measurements are absent. The anonymous aviation safety figures come from the supplied case design; HAESL photographs are a separate event and do not establish those figures. Keep planning examples separate.
+- Use actual dates/participation/content where numeric case measurements are absent. Justin confirmed on 2026-11-23 that the HAESL photos and supplied aviation safety plan belong in one case. Keep one aviation-safety card/detail with real photos, plan, figures and capacity estimator; the old case-haesl.html URL redirects there. Keep planning examples separate.
 - HKIC (Sheung Shui), 2026-10-29, uses six owner-authorized web selections. Retain its case and album; the full 22-photo collection stays in private Library. Derive case count from supported event records, never a fixed target.
 - Case-page enquiry prepares a mailto draft; display that the visitor must confirm/send in their email client.
 

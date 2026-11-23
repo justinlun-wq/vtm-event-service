@@ -36,10 +36,11 @@ def gallery():
 PROGRAMS=[('XR 探索工作坊','學校、企業創新團隊','認識主題','分組探索','分享構想','XR 應用構想卡','由觀察、提問與體驗，延伸一個可應用於課堂或工作的想法。'),('Team Building 協作挑戰','企業 HR、跨部門團隊','分配角色','共同解難','團隊回顧','團隊合作約定卡','透過操作、觀察與協調的角色分工，交流線索，共同完成任務。'),('行業情境體驗日','物管、工程及培訓團隊','講解情境','體驗與討論','整理下一步','觀察行動卡','走進工作情境，觀察問題、比較選擇，再整理具體行動。')]
 
 def programs():
+    # 三個方向保持展開；共用的人數／時間／空間示例只顯示一次。
     cards=''
     for name,audience,s1,s2,s3,takeaway,description in PROGRAMS:
-        cards+=f'''<details class="program-option"><summary><span><strong>{name}</strong><small>{audience}</small></span><span class="details-icon" aria-hidden="true">＋</span></summary><div class="program-option-body"><p>{description}</p><div class="planning-facts"><span>30 人示例</span><span>約 2.5 小時</span><span>場地示例約 90 m²</span></div><ol class="suggested-steps">{''.join(f'<li><span>{t}</span><strong>{step}</strong></li>' for t,step in [('25 分鐘',s1),('105 分鐘',s2),('20 分鐘',s3)])}</ol><p class="small-note">分組環節包括換組時間；人數、設備及空間可按需要調整。</p><div class="takeaway"><span>活動後帶走</span><strong>{takeaway}</strong></div><a class="text-link" href="#enquiry" data-enquiry="{name}">商討這個活動方向</a></div></details>'''
-    return '<section class="section wrap" id="programs"><div class="section-heading"><div><p class="eyebrow">從案例，延伸你的安排</p><h2>按活動目標選擇方向</h2><p>以下為建議方案，可按對象、人數及場地商討，並非上述案例的實際活動數字。</p></div></div><div class="program-options">'+cards+'</div><div class="platform-links"><a href="https://vtmdigital.com/hk/ctp/">建造安全培訓 · CTP</a><a href="https://vtmdigital.com/hk/pmtp/">物業管理培訓 · PMTP</a><a href="https://vtmdigital.com/hk/xr-academy/">教育與探索 · XR Academy</a></div></section>'
+        cards+=f'''<article class="program-compare-card"><header><h3>{name}</h3><p><span>適合對象</span>{audience}</p></header><section><h4>活動重點</h4><p>{description}</p></section><section><h4>活動流程</h4><ol class="compare-steps">{''.join(f'<li><span>{i+1}</span>{step}</li>' for i,step in enumerate([s1,s2,s3]))}</ol></section><section class="compare-takeaway"><h4>活動後帶走</h4><strong>{takeaway}</strong></section><a class="text-link compare-cta" href="#enquiry" data-enquiry="{name}">商討這個活動方向 <span aria-hidden="true">↗</span></a></article>'''
+    return '<section class="section wrap" id="programs"><div class="section-heading"><div><p class="eyebrow">從案例，延伸你的安排</p><h2>按活動目標選擇方向</h2><p>以下為建議方案，可按對象、人數及場地商討，並非上述案例的實際活動數字。</p></div></div><div class="planning-example"><span>共用規劃示例</span><div class="planning-facts"><span>30 人示例</span><span>約 2.5 小時</span><span>場地示例約 90 m²</span></div><p>流程示例：25 分鐘介紹、105 分鐘體驗、20 分鐘回顧；包括換組時間，實際安排可調整。</p></div><div class="program-comparison">'+cards+'</div><div class="platform-links"><a href="https://vtmdigital.com/hk/ctp/">建造安全培訓 · CTP</a><a href="https://vtmdigital.com/hk/pmtp/">物業管理培訓 · PMTP</a><a href="https://vtmdigital.com/hk/xr-academy/">教育與探索 · XR Academy</a></div></section>'
 
 def enquiry(context=''):
     return f'''<section class="enquiry-section" id="enquiry"><div class="wrap enquiry-layout"><div class="enquiry-copy"><p class="eyebrow">LET’S TALK</p><h2>想安排類似活動？</h2><p>告訴我們活動對象、預計人數與日期；如有場地資料，也可以一併提供。我們會與你商討合適的內容及安排。</p><div class="contact-links"><a href="mailto:info@vtmdigital.com">info@vtmdigital.com</a><a href="tel:+85235903127">+852 3590 3127</a></div></div><form id="enquiry-form" class="enquiry-form"><div class="form-row"><label>姓名 <span>必填</span><input name="name" autocomplete="name" required maxlength="100"></label><label>工作電郵 <span>必填</span><input name="email" type="email" autocomplete="email" required maxlength="254"></label></div><label>公司／機構 <span>選填</span><input name="company" autocomplete="organization" maxlength="200"></label><label>查詢內容 <span>選填</span><textarea name="notes" rows="4" maxlength="4000" placeholder="例如：學校活動、約 60 位學生、預計 3 月舉行；場地尚未確定。">{e(context)}</textarea></label><button class="button dark" type="submit">準備電郵查詢</button><p class="form-note">按下後會開啟電郵草稿，請在電郵程式確認並寄出。</p><p class="form-status" id="enquiry-status" role="status" aria-live="polite"></p></form></div></section>'''
@@ -65,14 +66,16 @@ def aviation_extra():
 def detail(c):
     ref=REFMAP.get(c['reference'])
     heading=f'''<div class="detail-heading wrap"><a class="back-link" href="index.html#cases">返回所有案例</a><p class="eyebrow">{e(c['category'])} · {e(c['label'])}</p><h1>{e(c['title'])}</h1><p>{e(c['intro'])}</p>{facts(c)}</div>'''
+    floorplan=''
     if c['id']=='aviation-safety':
-        visual='''<div class="floorplan"><h2>場地平面配置</h2><button class="floor-open" type="button" id="open-plan" aria-label="放大場地配置示意"><img src="assets/aviation-floor.svg" width="640" height="480" alt="約 8 × 6 m，設三個 VR 體驗站、輪候區及安全通道"><span>放大配置圖</span></button><p class="small-note">全場約 8 × 6 m · S 為技術人員 · 青綠圓點為電源。配置示意，非施工圖。</p></div>'''
-    elif ref and ref['images']:
-        visual=f'''<div class="detail-photo"><img src="{ref['images'][0]}" alt="{e(c['title'])}現場" width="1600" height="1067" fetchpriority="high"><button class="photo-gallery-link" type="button" data-case="{ref['id']}">查看 {len(ref['images'])} 張現場相片</button></div>'''
+        floorplan='''<div class="floorplan"><h2>場地平面配置</h2><button class="floor-open" type="button" id="open-plan" aria-label="放大場地配置示意"><img src="assets/aviation-floor.svg" width="640" height="480" alt="約 8 × 6 m，設三個 VR 體驗站、輪候區及安全通道"><span>放大配置圖</span></button><p class="small-note">全場約 8 × 6 m · S 為技術人員 · 青綠圓點為電源。配置示意，非施工圖。</p></div>'''
+    if ref and ref['images']:
+        visual=f'''<div class="detail-photo"><img src="{c['cover'] or ref['images'][0]}" alt="{e(c['title'])}現場" width="1600" height="1067" fetchpriority="high"><button class="photo-gallery-link" type="button" data-case="{ref['id']}">查看 {len(ref['images'])} 張現場相片</button></div>'''
     else:visual='<div class="detail-process"><h2>活動流程</h2>'+property_art()+'</div>'
     topics='<div class="detail-topics"><p class="eyebrow">'+('每天安排其中 2 個情境' if c['id']=='aviation-safety' else '可參考的活動內容')+'</p><h2>'+('6 個 VR 安全情境' if c['id']=='aviation-safety' else '這場活動的重點')+'</h2><ol>'+''.join('<li>'+e(x)+'</li>' for x in c['topics'])+'</ol></div>'
     content='<div class="wrap detail-body"><section class="detail-panel detail-overview">'+visual+topics+'</section>'
-    if c['id']=='aviation-safety':content+=aviation_extra()
+    if c['id']=='aviation-safety':
+        content+='<section class="detail-panel">'+floorplan+'</section>'+aviation_extra()
     else:
         content+='<section class="detail-panel"><div class="section-heading"><div><p class="eyebrow">活動如何進行</p><h2>由介紹，到體驗與交流</h2></div></div><ol class="activity-steps">'+''.join(f'<li><span aria-hidden="true">{i+1}</span><div><h3>{e(title)}</h3><p>{e(desc)}</p></div></li>' for i,(title,desc) in enumerate(c['steps']))+'</ol></section>'
     content+='<section class="responsibilities"><div class="detail-panel"><p class="eyebrow">'+('此案例的配置' if c['id']=='aviation-safety' else '服務內容參考')+'</p><h2>VTM 提供</h2>'+checklist(c['provide'])+'</div><div class="detail-panel"><p class="eyebrow">'+('主辦單位準備' if c['id']=='aviation-safety' else '籌備類似活動時')+'</p><h2>你需要準備</h2>'+checklist(c['prepare'])+'</div></section><p class="preparation-note">'+e(c['note'])+'</p>'
@@ -83,3 +86,8 @@ def detail(c):
 def build():
     (ROOT/'dist/index.html').write_text(shell('XR 活動與培訓',homepage(),'index.html'))
     for c in CASES:(ROOT/'dist'/link(c)).write_text(shell(c['title'],detail(c),link(c)))
+
+    # 舊相片案例連結導向合併頁，保留已分享網址。
+    old=shell('航空工程公司 · 員工 VR 安全體驗區','<main id="main" class="wrap section"><h1>航空工程公司 · 員工 VR 安全體驗區</h1><p role="status" aria-live="polite">現場相片與活動安排已合併，<a href="case-aviation-safety.html">查看完整案例</a>。</p></main>','case-haesl.html')
+    old=old.replace('</head>','<link rel="canonical" href="case-aviation-safety.html"><meta http-equiv="refresh" content="0;url=case-aviation-safety.html"></head>')
+    (ROOT/'dist/case-haesl.html').write_text(old)
