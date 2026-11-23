@@ -76,6 +76,13 @@
       "確認參加對象、日期與可用時段",
       "商討電源、屏幕、網絡及展示安排",
       "預留通道、輪候及存放物品的位置"
+    ],
+    "references": [
+      {
+        "reference": "lochan-jun",
+        "portfolio": "case-school-workshop.html",
+        "caption": "校園講解與體驗參考"
+      }
     ]
   },
   {
@@ -155,6 +162,13 @@
       "確認參加對象、日期與可用時段",
       "商討電源、屏幕、網絡及展示安排",
       "預留通道、輪候及存放物品的位置"
+    ],
+    "references": [
+      {
+        "reference": "sino",
+        "portfolio": "case-sino-workshop.html",
+        "caption": "團體體驗與交流參考"
+      }
     ]
   },
   {
@@ -234,6 +248,13 @@
       "確認參加對象、日期與可用時段",
       "商討電源、屏幕、網絡及展示安排",
       "預留通道、輪候及存放物品的位置"
+    ],
+    "references": [
+      {
+        "reference": "haesl",
+        "portfolio": "case-aviation-safety.html",
+        "caption": "員工 VR 體驗現場參考"
+      }
     ]
   },
   {
@@ -313,6 +334,13 @@
       "確認參加對象、日期與可用時段",
       "商討電源、屏幕、網絡及展示安排",
       "預留通道、輪候及存放物品的位置"
+    ],
+    "references": [
+      {
+        "reference": "hsbc-hangseng",
+        "portfolio": "case-corporate-exchange.html",
+        "caption": "企業分享與體驗參考"
+      }
     ]
   },
   {
@@ -392,6 +420,13 @@
       "確認參加對象、日期與可用時段",
       "商討電源、屏幕、網絡及展示安排",
       "預留通道、輪候及存放物品的位置"
+    ],
+    "references": [
+      {
+        "reference": "expo-2026",
+        "portfolio": "case-expo-showcase.html",
+        "caption": "業界展覽現場參考"
+      }
     ]
   }
 ]

@@ -9,7 +9,8 @@
    all('[data-demo-id]').forEach(card=>{
     const demo=demos.find(d=>d.id===card.dataset.demoId),layout=demo.layouts.find(x=>x.size===size);
     card.querySelector('[data-demo-footprint]').textContent=layout?`${layout.area} m² · ${layout.stations} 個體驗站`:`${demo.layouts[0].area}–${demo.layouts[2].area} m² 示例`;
-    card.href=card.dataset.demoUrl+(layout?'#'+size:'');
+    card.querySelector('.demo-main-link').href=card.dataset.demoUrl+(layout?'#'+size:'');
+    const shown=layout||demo.layouts[1];card.querySelector('[data-demo-cover]').src=shown.floorplan;card.querySelector('[data-demo-cover-label]').textContent=shown.label+'配置示意';card.querySelector('[data-demo-card-stations]').textContent=shown.stations+' 個體驗站';card.querySelector('[data-demo-card-duration]').textContent=shown.minutes+' 分鐘';
    });
    document.getElementById('demo-catalog-status').textContent='5 款示範方案 · '+(size==='all'?'可切換不同場地規模':button.textContent+'配置示例');
   }));
