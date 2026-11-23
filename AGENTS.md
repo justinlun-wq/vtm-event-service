@@ -4,6 +4,8 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 
 ## Accepted direction
 
+- Overall layout follows the supplied colleague Event Case Design v2 PDF/HTML. Keep its navy/white/teal styling, page proportions and small/medium/large selector; make only the owner-requested local changes. The homepage photo section is a photo gallery, with image zoom/navigation, filters and search; preserve the full selected collection.
+
 - The case-led page is primary at dist/index.html. Its static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
 - B hero has real service-related photographs behind readable overlay text. Mouse hover, keyboard focus and touch/click select the same photo, copy and journey. Respect reduced motion.
 - Use **Team Building**, never Team Spirit. Copy uses concise written Hong Kong Traditional Chinese with spaces around English and numbers.

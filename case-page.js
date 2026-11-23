@@ -16,21 +16,41 @@
  categoryButtons.forEach(b=>b.addEventListener('click',()=>{category=b.dataset.eventFilter;format='all';filterCases();}));
  all('[data-format-filter]').forEach(a=>a.addEventListener('click',()=>{format=a.dataset.formatFilter;category='all';filterCases();}));
  if(categoryButtons.length)filterCases();
- // 相簿保持原先新至舊的排列，搜尋及分類後重新計算顯示數量。
- const albums=all('.album-card'),galleryButtons=all('[data-gallery-filter]');
+ // 相片牆依活動日期排序；篩選與放大檢視使用同一份相片清單。
+ const photos=all('.gallery-photo'),galleryButtons=all('[data-gallery-filter]');
  const search=document.getElementById('gallery-search'),more=document.getElementById('show-albums');
- let galleryCategory='all',expanded=false;
+ let galleryCategory='all',expanded=false,matchingPhotos=[];
  function filterGallery(){
   const query=(search?.value||'').trim().toLocaleLowerCase();
-  const matches=albums.filter(a=>(galleryCategory==='all'||a.dataset.galleryCategory===galleryCategory)&&(!query||a.dataset.search.toLocaleLowerCase().includes(query)));
-  const shown=expanded?matches:matches.slice(0,6);
-  albums.forEach(a=>a.hidden=!shown.includes(a));
+  matchingPhotos=photos.filter(a=>(galleryCategory==='all'||a.dataset.galleryCategory===galleryCategory)&&(!query||a.dataset.search.toLocaleLowerCase().includes(query)));
+  const shown=expanded?matchingPhotos:matchingPhotos.slice(0,12);
+  photos.forEach(a=>a.hidden=!shown.includes(a));
   galleryButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.galleryFilter===galleryCategory)));
-  document.getElementById('gallery-empty').hidden=matches.length>0;
-  document.getElementById('gallery-status').textContent=`顯示 ${shown.length} / ${matches.length} 個相簿`;
-  more.hidden=matches.length<=6;more.textContent=expanded?'收起相簿':`查看全部 ${matches.length} 個相簿`;
+  document.getElementById('gallery-empty').hidden=matchingPhotos.length>0;
+  document.getElementById('gallery-status').textContent=`顯示 ${shown.length} / ${matchingPhotos.length} 張相片`;
+  more.hidden=matchingPhotos.length<=12;more.textContent=expanded?'收起相片':`查看全部 ${matchingPhotos.length} 張相片`;
  }
- if(albums.length){galleryButtons.forEach(b=>b.addEventListener('click',()=>{galleryCategory=b.dataset.galleryFilter;expanded=false;filterGallery();}));search.addEventListener('input',()=>{expanded=false;filterGallery();});more.addEventListener('click',()=>{expanded=!expanded;filterGallery();});filterGallery();}
+ if(photos.length){galleryButtons.forEach(b=>b.addEventListener('click',()=>{galleryCategory=b.dataset.galleryFilter;expanded=false;filterGallery();}));search.addEventListener('input',()=>{expanded=false;filterGallery();});more.addEventListener('click',()=>{expanded=!expanded;filterGallery();});filterGallery();}
+ // 原生 dialog 支援 Escape、鍵盤箭咀及手機滑動，關閉後返回原相片。
+ const photoDialog=document.getElementById('gallery-dialog');
+ let photoIndex=0,photoOrigin=null,swipeStart=null;
+ function showPhoto(){
+  const item=matchingPhotos[photoIndex];if(!item)return;
+  const image=document.getElementById('gallery-photo');image.src=item.dataset.photoSrc;image.alt=item.dataset.photoTitle+'現場相片';
+  document.getElementById('gallery-caption').textContent=item.dataset.photoTitle+' · '+item.dataset.photoDate;
+  document.getElementById('gallery-position').textContent=`${photoIndex+1} / ${matchingPhotos.length}`;
+  for(const id of ['gallery-prev','gallery-next'])document.getElementById(id).disabled=matchingPhotos.length<2;
+ }
+ function movePhoto(step){if(matchingPhotos.length){photoIndex=(photoIndex+step+matchingPhotos.length)%matchingPhotos.length;showPhoto();}}
+ if(photoDialog){
+  photos.forEach(button=>button.addEventListener('click',()=>{photoOrigin=button;photoIndex=matchingPhotos.indexOf(button);showPhoto();photoDialog.showModal();}));
+  document.getElementById('gallery-close').addEventListener('click',()=>photoDialog.close());
+  document.getElementById('gallery-prev').addEventListener('click',()=>movePhoto(-1));document.getElementById('gallery-next').addEventListener('click',()=>movePhoto(1));
+  photoDialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();movePhoto(event.key==='ArrowLeft'?-1:1);}});
+  photoDialog.addEventListener('click',event=>{if(event.target===photoDialog)photoDialog.close();});photoDialog.addEventListener('close',()=>photoOrigin?.focus());
+  photoDialog.addEventListener('pointerdown',event=>{if(event.pointerType==='touch')swipeStart={x:event.clientX,y:event.clientY};});
+  photoDialog.addEventListener('pointerup',event=>{if(!swipeStart)return;const dx=event.clientX-swipeStart.x,dy=event.clientY-swipeStart.y;swipeStart=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.2)movePhoto(dx<0?1:-1);});
+ }
  // 人次只以案例的安排速度估算，無效輸入不保留舊數字冒充新結果。
  const number=document.getElementById('capacity-number');
  function estimate(){
