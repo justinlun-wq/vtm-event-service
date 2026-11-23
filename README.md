@@ -101,3 +101,5 @@ Gallery 按活動分 Album：每個活動一張封面，點入後只切換該活
 五款方案卡沿用封面卡樣式，封面為可隨規模切換的 Floor Plan；卡片下方及詳情頁附真實活動參考相，連到五個對應 Portfolio。三個活動目標比較補回 25／105／20 分鐘 Timeline。參考相與示意配置分開標示，未將 Team Building 的假設任務套用到實際 Sino 教育工作坊。
 
 最新 Thumbnail 指示：五款入口卡改回分類 Icon，Floor Plan 留在詳情頁；參考相、Portfolio 連結及目標 Timeline 保留。
+
+Thumbnail 視覺修正：標籤選擇器只限 `[data-demo-cover-label]`，避免套用到 Icon。五個 Icon 置中顯示為 76 px，移除重疊徽章、重複序號及多餘卡片留白。
