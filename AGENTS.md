@@ -4,9 +4,9 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 
 ## Accepted direction
 
-- Overall layout follows the supplied colleague Event Case Design v2 PDF/HTML. Keep its navy/white/teal styling, page proportions and small/medium/large filter within the case collection, combined independently with event type; make only the owner-requested local changes. The homepage photo section is an album gallery: exactly one cover per event, with zoom/previous/next restricted to that event’s photos. Keep album filters/search and the full selected collection.
+- Overall layout follows the supplied colleague Event Case Design v2 PDF/HTML. Keep its navy/white/teal styling, page proportions and small/medium/large selector within the five-program collection; make only the owner-requested local changes. The homepage photo section is an album gallery: exactly one cover per event, with zoom/previous/next restricted to that event’s photos. Keep album filters/search and the full selected collection.
 
-- The case-led page is primary at dist/index.html. Its static detail pages come from cases.json and case_page.py. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
+- The main section presents exactly five demo program categories from demos.json/demo_plans.py, not a portfolio list. Each has three explicit illustrative size configurations, floorplans, schedules and equipment/staff examples. Desktop has five compact cards in one row; mobile scrolls the same row horizontally. All planning figures must be labelled as examples. Legacy true-event details from cases.json remain for shared URLs but are unlisted from the main collection. Retain A, B, C and comparison pages; B remains at dist/b-event-journey.html.
 - B hero has real service-related photographs behind readable overlay text. Mouse hover, keyboard focus and touch/click select the same photo, copy and journey. Respect reduced motion.
 - Use **Team Building**, never Team Spirit. Copy uses concise written Hong Kong Traditional Chinese with spaces around English and numbers.
 - Keep white cards, neutral page backgrounds and inner theme accents; do not restore full-width theme-color bands.
@@ -14,8 +14,8 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 - Preserve the 19 approved references, including Safety Forum 2024 and GCSFE 2023: the original 15 albums / 49 photos and four document-only records. Add HAESL as the twentieth reference: six web-optimised photographs, bringing the selection to 16 albums / 55 photos. Do not invent photos or claim clients bought the proposed programs.
 - Keep Sino Inno Lab under Team Building, newest-first albums, the landscape June school cover, bounded portrait frames and professional CTAs.
 
-- Use actual dates/participation/content where numeric case measurements are absent. Justin confirmed on 2026-11-23 that the HAESL photos and supplied aviation safety plan belong in one case. Keep one aviation-safety card/detail with real photos, plan, figures and capacity estimator; the old case-haesl.html URL redirects there. Keep planning examples separate.
-- HKIC (Sheung Shui), 2026-10-29, uses six owner-authorized web selections. Retain its case and album; the full 22-photo collection stays in private Library. Derive case count from supported event records, never a fixed target.
+- Use actual dates/participation/content where numeric case measurements are absent. Justin confirmed on 2026-11-23 that the HAESL photos and supplied aviation safety plan belong in one case. Retain the legacy aviation-safety detail and old case-haesl.html redirect for previously shared URLs; do not feature that client case as a demo-program category. Keep planning examples separate.
+- HKIC (Sheung Shui), 2026-10-29, uses six owner-authorized web selections. Show HKIC in the real-event Album Gallery only; its old detail remains for shared URLs, and all 22 originals stay in private Library. The five program categories are the owner’s explicitly requested demo collection.
 - Case-page enquiry prepares a mailto draft; display that the visitor must confirm/send in their email client.
 
 ## Source map
@@ -23,7 +23,8 @@ Read README.md and skills/edit-event-page/SKILL.md. This is a portable static we
 | Source | Responsibility |
 | --- | --- |
 | build.py | Build entry and original A/B/C shell |
-| case_page.py, cases.json | Case homepage, detail pages, verified public copy |
+| case_page.py, cases.json | Main shell/gallery and unlisted legacy real-event details |
+| demos.json, demo_plans.py, demo-plans.js, demo-plans.css | Five illustrative programs, 15 floorplans, responsive category row and size/detail interactions |
 | case-page.css, case-page-overrides.css, case-page.js | Responsive case layout, filters, gallery search, capacity estimator, mailto draft |
 | visitor_layouts.py | A/B/C and comparison markup |
 | visitor.js | Public copy, activity rendering, hero selection, enquiry logic |
@@ -55,4 +56,4 @@ python3 verify_html.py
 - Keep assets bundled; do not add tracking or remote scripts for routine edits.
 - Add Chinese comments for nontrivial behavior. Return a full modified ZIP or reviewable branch with regenerated dist, validation results and limitations.
 
-- Case-card facts use simple line icons with short values; keep accessible labels and full explanations on detail pages.
+- The five main cards use category icons and illustrative area ranges, not portfolio photos or client fact grids. Keep accessible labels and detailed planning explanations.

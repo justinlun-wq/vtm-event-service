@@ -1,0 +1,397 @@
+[
+  {
+    "id": "demo-xr-workshop",
+    "title": "XR 探索工作坊",
+    "category": "學習與探索",
+    "tagline": "認識科技，再動手探索",
+    "audience": "學校、教育機構、企業創新團隊",
+    "intro": "透過主題介紹、分組觀察與頭戴裝置體驗，讓參加者把 XR 應用連繫到課堂或工作。",
+    "kind": "classroom",
+    "steps": [
+      "認識 XR",
+      "分組探索",
+      "分享構想",
+      "回顧與提問"
+    ],
+    "topics": [
+      "XR 應用介紹與裝置示範",
+      "輪流參與頭戴裝置體驗",
+      "觀察、記錄與小組交流",
+      "整理一個應用構想"
+    ],
+    "extras": [
+      "展示屏幕及主題介紹位置",
+      "分組座位與討論位置"
+    ],
+    "takeaway": "XR 應用構想卡",
+    "layouts": [
+      {
+        "size": "small",
+        "label": "小型",
+        "width": 6,
+        "depth": 4,
+        "area": 24,
+        "stations": 1,
+        "staff": 1,
+        "people": "6–12 人",
+        "minutes": 60,
+        "cycle": 6,
+        "floorplan": "assets/plans/demo-xr-workshop-small.svg"
+      },
+      {
+        "size": "medium",
+        "label": "中型",
+        "width": 10,
+        "depth": 6,
+        "area": 60,
+        "stations": 3,
+        "staff": 2,
+        "people": "18–24 人",
+        "minutes": 90,
+        "cycle": 6,
+        "floorplan": "assets/plans/demo-xr-workshop-medium.svg"
+      },
+      {
+        "size": "large",
+        "label": "大型",
+        "width": 12,
+        "depth": 10,
+        "area": 120,
+        "stations": 6,
+        "staff": 3,
+        "people": "36–48 人",
+        "minutes": 120,
+        "cycle": 6,
+        "floorplan": "assets/plans/demo-xr-workshop-large.svg"
+      }
+    ],
+    "provide": [
+      "頭顯 {stations} 套使用，另預留後備裝置",
+      "{staff} 名工作人員的示例配置",
+      "主題講解、裝置操作示範與現場協調",
+      "清潔用品及體驗流程安排"
+    ],
+    "prepare": [
+      "提供可用場地平面及尺寸",
+      "確認參加對象、日期與可用時段",
+      "商討電源、屏幕、網絡及展示安排",
+      "預留通道、輪候及存放物品的位置"
+    ]
+  },
+  {
+    "id": "demo-team-building",
+    "title": "Team Building",
+    "category": "團隊協作",
+    "tagline": "分工、交流，一齊完成任務",
+    "audience": "企業 HR、跨部門團隊、新同事活動",
+    "intro": "以操作、觀察及協調的角色分工，配合可商討的合作任務，讓不同組員參與體驗、交流及回顧。",
+    "kind": "team",
+    "steps": [
+      "分組與分工",
+      "合作體驗",
+      "換組與交流",
+      "團隊回顧"
+    ],
+    "topics": [
+      "操作與觀察角色輪換",
+      "按隊伍分享觀察與線索",
+      "合作任務及小組交流",
+      "回顧溝通與協作方式"
+    ],
+    "extras": [
+      "小組集合及任務講解位置",
+      "隊伍討論與物品暫放位置"
+    ],
+    "takeaway": "團隊合作約定卡",
+    "layouts": [
+      {
+        "size": "small",
+        "label": "小型",
+        "width": 6,
+        "depth": 6,
+        "area": 36,
+        "stations": 2,
+        "staff": 1,
+        "people": "8 人",
+        "minutes": 60,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-team-building-small.svg"
+      },
+      {
+        "size": "medium",
+        "label": "中型",
+        "width": 12,
+        "depth": 6,
+        "area": 72,
+        "stations": 4,
+        "staff": 2,
+        "people": "24 人",
+        "minutes": 90,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-team-building-medium.svg"
+      },
+      {
+        "size": "large",
+        "label": "大型",
+        "width": 12,
+        "depth": 12,
+        "area": 144,
+        "stations": 6,
+        "staff": 3,
+        "people": "48 人",
+        "minutes": 120,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-team-building-large.svg"
+      }
+    ],
+    "provide": [
+      "頭顯 {stations} 套使用，另預留後備裝置",
+      "{staff} 名工作人員的示例配置",
+      "主題講解、裝置操作示範與現場協調",
+      "清潔用品及體驗流程安排"
+    ],
+    "prepare": [
+      "提供可用場地平面及尺寸",
+      "確認參加對象、日期與可用時段",
+      "商討電源、屏幕、網絡及展示安排",
+      "預留通道、輪候及存放物品的位置"
+    ]
+  },
+  {
+    "id": "demo-safety-training",
+    "title": "安全情境培訓",
+    "category": "工作情境",
+    "tagline": "先體驗，再討論工作風險",
+    "audience": "物管、工程、營運及培訓團隊",
+    "intro": "從工作情境預覽開始，配合 VR 體驗、小組討論與分享，連繫日常工作中的風險觀察。情境主題按需要選擇。",
+    "kind": "safety",
+    "steps": [
+      "情境簡介",
+      "分組體驗",
+      "討論與分享",
+      "整理行動"
+    ],
+    "topics": [
+      "工作情境預覽與操作介紹",
+      "VR 訓練情境體驗",
+      "觀察及討論工作風險",
+      "整理可延伸的工作行動"
+    ],
+    "extras": [
+      "講解屏幕及小組討論位置",
+      "培訓主題與參加對象資料"
+    ],
+    "takeaway": "工作風險觀察卡",
+    "layouts": [
+      {
+        "size": "small",
+        "label": "小型",
+        "width": 6,
+        "depth": 4,
+        "area": 24,
+        "stations": 1,
+        "staff": 1,
+        "people": "4 人",
+        "minutes": 60,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-safety-training-small.svg"
+      },
+      {
+        "size": "medium",
+        "label": "中型",
+        "width": 8,
+        "depth": 6,
+        "area": 48,
+        "stations": 3,
+        "staff": 2,
+        "people": "12–18 人",
+        "minutes": 90,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-safety-training-medium.svg"
+      },
+      {
+        "size": "large",
+        "label": "大型",
+        "width": 12,
+        "depth": 8,
+        "area": 96,
+        "stations": 5,
+        "staff": 3,
+        "people": "24–30 人",
+        "minutes": 120,
+        "cycle": 8,
+        "floorplan": "assets/plans/demo-safety-training-large.svg"
+      }
+    ],
+    "provide": [
+      "頭顯 {stations} 套使用，另預留後備裝置",
+      "{staff} 名工作人員的示例配置",
+      "主題講解、裝置操作示範與現場協調",
+      "清潔用品及體驗流程安排"
+    ],
+    "prepare": [
+      "提供可用場地平面及尺寸",
+      "確認參加對象、日期與可用時段",
+      "商討電源、屏幕、網絡及展示安排",
+      "預留通道、輪候及存放物品的位置"
+    ]
+  },
+  {
+    "id": "demo-xr-experience-zone",
+    "title": "開放式 XR 體驗區",
+    "category": "活動體驗",
+    "tagline": "自由到場，分站輪流體驗",
+    "audience": "員工活動、開放日、安全推廣日",
+    "intro": "把 XR 體驗站放進現有活動，參加者按動線輪流體驗，工作人員協助佩戴、操作及交流。",
+    "kind": "zone",
+    "steps": [
+      "進場準備",
+      "開放體驗",
+      "中段輪換與檢查",
+      "最後體驗與收結"
+    ],
+    "topics": [
+      "工作人員介紹體驗方式",
+      "按站點輪流體驗",
+      "配合屏幕展示及現場講解",
+      "收集意見及延伸交流"
+    ],
+    "extras": [
+      "輪候及觀察位置",
+      "清楚的進出及開放時段"
+    ],
+    "takeaway": "體驗心得與應用方向",
+    "layouts": [
+      {
+        "size": "small",
+        "label": "小型",
+        "width": 6,
+        "depth": 4,
+        "area": 24,
+        "stations": 1,
+        "staff": 1,
+        "people": "每小時約 6 人次",
+        "minutes": 120,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-xr-experience-zone-small.svg"
+      },
+      {
+        "size": "medium",
+        "label": "中型",
+        "width": 12,
+        "depth": 6,
+        "area": 72,
+        "stations": 4,
+        "staff": 2,
+        "people": "每小時約 24 人次",
+        "minutes": 180,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-xr-experience-zone-medium.svg"
+      },
+      {
+        "size": "large",
+        "label": "大型",
+        "width": 12,
+        "depth": 12,
+        "area": 144,
+        "stations": 8,
+        "staff": 4,
+        "people": "每小時約 48 人次",
+        "minutes": 240,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-xr-experience-zone-large.svg"
+      }
+    ],
+    "provide": [
+      "頭顯 {stations} 套使用，另預留後備裝置",
+      "{staff} 名工作人員的示例配置",
+      "主題講解、裝置操作示範與現場協調",
+      "清潔用品及體驗流程安排"
+    ],
+    "prepare": [
+      "提供可用場地平面及尺寸",
+      "確認參加對象、日期與可用時段",
+      "商討電源、屏幕、網絡及展示安排",
+      "預留通道、輪候及存放物品的位置"
+    ]
+  },
+  {
+    "id": "demo-expo-forum",
+    "title": "展覽／論壇展示",
+    "category": "展示與交流",
+    "tagline": "設備展示，帶動應用討論",
+    "audience": "展覽攤位、論壇、行業交流活動",
+    "intro": "結合設備展示、XR 示範、體驗與交流，按展位條件規劃觀察、輪候及洽談位置。",
+    "kind": "expo",
+    "steps": [
+      "開場介紹",
+      "示範與體驗",
+      "交流與輪換",
+      "收結與跟進"
+    ],
+    "topics": [
+      "XR 應用與設備介紹",
+      "頭戴裝置現場示範",
+      "展示屏幕與操作帶領",
+      "按來賓需要交流應用"
+    ],
+    "extras": [
+      "主辦方展位及進撤場規定",
+      "品牌展示與洽談位置"
+    ],
+    "takeaway": "應用討論及後續聯絡方向",
+    "layouts": [
+      {
+        "size": "small",
+        "label": "小型",
+        "width": 6,
+        "depth": 6,
+        "area": 36,
+        "stations": 2,
+        "staff": 1,
+        "people": "每小時約 12 人次",
+        "minutes": 180,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-expo-forum-small.svg"
+      },
+      {
+        "size": "medium",
+        "label": "中型",
+        "width": 12,
+        "depth": 8,
+        "area": 96,
+        "stations": 4,
+        "staff": 2,
+        "people": "每小時約 24 人次",
+        "minutes": 240,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-expo-forum-medium.svg"
+      },
+      {
+        "size": "large",
+        "label": "大型",
+        "width": 20,
+        "depth": 10,
+        "area": 200,
+        "stations": 8,
+        "staff": 4,
+        "people": "每小時約 48 人次",
+        "minutes": 360,
+        "cycle": 10,
+        "floorplan": "assets/plans/demo-expo-forum-large.svg"
+      }
+    ],
+    "provide": [
+      "頭顯 {stations} 套使用，另預留後備裝置",
+      "{staff} 名工作人員的示例配置",
+      "主題講解、裝置操作示範與現場協調",
+      "清潔用品及體驗流程安排"
+    ],
+    "prepare": [
+      "提供可用場地平面及尺寸",
+      "確認參加對象、日期與可用時段",
+      "商討電源、屏幕、網絡及展示安排",
+      "預留通道、輪候及存放物品的位置"
+    ]
+  }
+]

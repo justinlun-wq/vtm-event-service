@@ -135,10 +135,10 @@ function snapshot(name, html) {
   new vm.Script(fs.readFileSync(path.join(root,'case-page.js'),'utf8'));
   const cases=JSON.parse(fs.readFileSync(path.join(root,'cases.json'),'utf8'));
   assert.equal(new Set(cases.map(c=>c.id)).size,cases.length);
-  assert.equal((primary.match(/class="event-card"/g)||[]).length,cases.length);
+  const demos=JSON.parse(fs.readFileSync(path.join(root,'demos.json'),'utf8'));assert.equal(demos.length,5);assert.equal((primary.match(/class="demo-card"/g)||[]).length,5);assert.ok(!primary.includes('class="event-card"'));for(const d of demos){assert.ok(primary.includes('case-'+d.id+'.html'));assert.equal(d.layouts.length,3);const html=fs.readFileSync(path.join(root,'dist','case-'+d.id+'.html'),'utf8');assert.ok(html.includes('規劃示例'));for(const l of d.layouts)assert.ok(fs.existsSync(path.join(root,'dist',l.floorplan)));}
   for(const c of cases){
     assert.equal(c.facts.length,4);
-    assert.ok(primary.includes('case-'+c.id+'.html'));
+    // 舊真實活動頁保留分享網址，主頁入口只展示五款示範方案。
     const detail=fs.readFileSync(path.join(root,'dist','case-'+c.id+'.html'),'utf8');
     assert.ok(detail.includes(c.title));
     for(const word of ['[待填]','平面圖待補','undefined','[object Object]'])assert.ok(!detail.includes(word));
