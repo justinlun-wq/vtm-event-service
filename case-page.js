@@ -16,34 +16,34 @@
  categoryButtons.forEach(b=>b.addEventListener('click',()=>{category=b.dataset.eventFilter;format='all';filterCases();}));
  all('[data-format-filter]').forEach(a=>a.addEventListener('click',()=>{format=a.dataset.formatFilter;category='all';filterCases();}));
  if(categoryButtons.length)filterCases();
- // 相片牆依活動日期排序；篩選與放大檢視使用同一份相片清單。
+ // 一個活動一個相簿；搜尋及分類只篩選相簿封面。
  const photos=all('.gallery-photo'),galleryButtons=all('[data-gallery-filter]');
  const search=document.getElementById('gallery-search'),more=document.getElementById('show-albums');
  let galleryCategory='all',expanded=false,matchingPhotos=[];
  function filterGallery(){
   const query=(search?.value||'').trim().toLocaleLowerCase();
   matchingPhotos=photos.filter(a=>(galleryCategory==='all'||a.dataset.galleryCategory===galleryCategory)&&(!query||a.dataset.search.toLocaleLowerCase().includes(query)));
-  const shown=expanded?matchingPhotos:matchingPhotos.slice(0,12);
+  const shown=expanded?matchingPhotos:matchingPhotos.slice(0,6);
   photos.forEach(a=>a.hidden=!shown.includes(a));
   galleryButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.galleryFilter===galleryCategory)));
   document.getElementById('gallery-empty').hidden=matchingPhotos.length>0;
-  document.getElementById('gallery-status').textContent=`顯示 ${shown.length} / ${matchingPhotos.length} 張相片`;
-  more.hidden=matchingPhotos.length<=12;more.textContent=expanded?'收起相片':`查看全部 ${matchingPhotos.length} 張相片`;
+  document.getElementById('gallery-status').textContent=`顯示 ${shown.length} / ${matchingPhotos.length} 個相簿`;
+  more.hidden=matchingPhotos.length<=6;more.textContent=expanded?'收起相簿':`查看全部 ${matchingPhotos.length} 個相簿`;
  }
  if(photos.length){galleryButtons.forEach(b=>b.addEventListener('click',()=>{galleryCategory=b.dataset.galleryFilter;expanded=false;filterGallery();}));search.addEventListener('input',()=>{expanded=false;filterGallery();});more.addEventListener('click',()=>{expanded=!expanded;filterGallery();});filterGallery();}
  // 原生 dialog 支援 Escape、鍵盤箭咀及手機滑動，關閉後返回原相片。
  const photoDialog=document.getElementById('gallery-dialog');
- let photoIndex=0,photoOrigin=null,swipeStart=null;
+ let photoIndex=0,photoOrigin=null,swipeStart=null,activeAlbum=null;
  function showPhoto(){
-  const item=matchingPhotos[photoIndex];if(!item)return;
-  const image=document.getElementById('gallery-photo');image.src=item.dataset.photoSrc;image.alt=item.dataset.photoTitle+'現場相片';
-  document.getElementById('gallery-caption').textContent=item.dataset.photoTitle+' · '+item.dataset.photoDate;
-  document.getElementById('gallery-position').textContent=`${photoIndex+1} / ${matchingPhotos.length}`;
-  for(const id of ['gallery-prev','gallery-next'])document.getElementById(id).disabled=matchingPhotos.length<2;
+  if(!activeAlbum)return;
+  const image=document.getElementById('gallery-photo');image.src=activeAlbum.images[photoIndex];image.alt=activeAlbum.name+' · 相片 '+(photoIndex+1);
+  document.getElementById('gallery-caption').textContent=activeAlbum.name+' · '+activeAlbum.date;
+  document.getElementById('gallery-position').textContent=`${photoIndex+1} / ${activeAlbum.images.length}`;
+  for(const id of ['gallery-prev','gallery-next'])document.getElementById(id).disabled=activeAlbum.images.length<2;
  }
- function movePhoto(step){if(matchingPhotos.length){photoIndex=(photoIndex+step+matchingPhotos.length)%matchingPhotos.length;showPhoto();}}
+ function movePhoto(step){if(activeAlbum?.images.length){photoIndex=(photoIndex+step+activeAlbum.images.length)%activeAlbum.images.length;showPhoto();}}
  if(photoDialog){
-  photos.forEach(button=>button.addEventListener('click',()=>{photoOrigin=button;photoIndex=matchingPhotos.indexOf(button);showPhoto();photoDialog.showModal();}));
+  photos.forEach(button=>button.addEventListener('click',()=>{activeAlbum=jobReferences.find(r=>r.id===button.dataset.albumId);if(!activeAlbum?.images.length)return;photoOrigin=button;photoIndex=0;showPhoto();photoDialog.showModal();}));
   document.getElementById('gallery-close').addEventListener('click',()=>photoDialog.close());
   document.getElementById('gallery-prev').addEventListener('click',()=>movePhoto(-1));document.getElementById('gallery-next').addEventListener('click',()=>movePhoto(1));
   photoDialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();movePhoto(event.key==='ArrowLeft'?-1:1);}});

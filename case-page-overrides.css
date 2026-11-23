@@ -17,3 +17,6 @@
 /* 整體尺度沿用同事 v2 原稿，保留指定的案例、比較及 Gallery 改動。 */
 .wrap{max-width:1160px;padding-inline:24px}.case-hero{padding-block:36px 40px}.case-hero h1{font-size:clamp(28px,4vw,40px)}.hero-intro{font-size:17px}.hero-questions li{font-size:15px;padding-block:7px}
 @media(max-width:760px){.wrap{padding-inline:20px}.case-hero{padding-block:32px}.hero-questions li{font-size:14px}}
+
+/* 每張封面對應一個活動，相片張數與活動標題一直可見。 */
+.gallery-album-count{position:absolute;top:10px;left:10px;padding:4px 8px;background:#14213cdd;color:#fff;border-radius:4px;font-size:12px}
