@@ -58,4 +58,4 @@ python3 verify_html.py
 
 - The five main cards use category Icon thumbnails (floorplans are in details), illustrative area ranges and a distinct real-event reference photo block underneath. Keep planning examples separate from actual Portfolio records. Keep accessible labels and detailed planning explanations.
 
-- The three-goal comparison includes 25/105/20-minute timelines. Photo references show scene evidence only; never present unrelated actual events as proof that a hypothetical program or its numbers were delivered.
+- The three-goal comparison uses distinct 150-minute planning timelines: XR 20/95/35, Team Building 15/110/25, industry 30/80/40. Photo references show scene evidence only; never present unrelated actual events as proof that a hypothetical program or its numbers were delivered.
