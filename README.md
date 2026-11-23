@@ -103,3 +103,5 @@ Gallery 按活動分 Album：每個活動一張封面，點入後只切換該活
 最新 Thumbnail 指示：五款入口卡改回分類 Icon，Floor Plan 留在詳情頁；參考相、Portfolio 連結及目標 Timeline 保留。
 
 Thumbnail 視覺修正：標籤選擇器只限 `[data-demo-cover-label]`，避免套用到 Icon。五個 Icon 置中顯示為 76 px，移除重疊徽章、重複序號及多餘卡片留白。
+
+Icon SVG 使用帶留白的 viewBox，檢查時須把 stroke 寬度計入邊界，並核對完整輪廓。

@@ -10,11 +10,11 @@ REFS={x['id']:x for x in json.loads((ROOT/'references.json').read_text())}
 def icon(kind):
     paths={
         'classroom':'<path d="M4 5h24v18H4zM9 30h14M16 23v7M9 11h14M9 16h9"/>',
-        'team':'<circle cx="10" cy="10" r="4"/><circle cx="24" cy="10" r="4"/><path d="M3 29v-4a7 7 0 0 1 14 0v4m0-4a7 7 0 0 1 14 0v4M13 17l4 3 4-3"/>',
+        'team':'<circle cx="10" cy="10" r="4"/><circle cx="24" cy="10" r="4"/><path d="M3 29v-4a7 7 0 0 1 14 0v4H3Zm14 0v-4a7 7 0 0 1 14 0v4H17Z"/>',
         'safety':'<path d="M17 2 29 7v10c0 7-12 14-12 14S5 24 5 17V7Z"/><path d="m10 16 5 5 9-10"/>',
         'zone':'<rect x="3" y="10" width="28" height="17" rx="4"/><path d="M9 10V8a8 8 0 0 1 16 0v2M3 18H1m30 0h2M11 17h2m8 0h2m-9 10 3-4 3 4"/>',
-        'expo':'<path d="M3 31V6h28v25M1 6 5 1h24l4 5M8 12h18v11H8zM12 31v-4h10v4"/>'}
-    return '<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[kind]+'</svg>'
+        'expo':'<path d="M3 31V6h28v25H3ZM1 6 5 1h24l4 5ZM8 12h18v11H8zM12 31v-4h10v4"/>'}
+    return '<svg viewBox="-2 -2 38 38" preserveAspectRatio="xMidYMid meet" overflow="visible" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[kind]+'</svg>'
 
 
 def floorplan(c,l):
