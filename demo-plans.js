@@ -1,20 +1,6 @@
 // 示範方案與真實活動相簿分開；切換規模只更新規劃示例。
 (() => {
  const all=s=>[...document.querySelectorAll(s)];
- const catalog=document.getElementById('cases');
- if(catalog?.dataset.demoCatalog){
-  const demos=JSON.parse(catalog.dataset.demoCatalog),buttons=all('[data-demo-scale]');
-  buttons.forEach(button=>button.addEventListener('click',()=>{
-   const size=button.dataset.demoScale;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-   all('[data-demo-id]').forEach(card=>{
-    const demo=demos.find(d=>d.id===card.dataset.demoId),layout=demo.layouts.find(x=>x.size===size);
-    card.querySelector('[data-demo-footprint]').textContent=layout?`${layout.area} m² · ${layout.stations} 個體驗站`:`${demo.layouts[0].area}–${demo.layouts[2].area} m² 示例`;
-    card.querySelector('.demo-main-link').href=card.dataset.demoUrl+(layout?'#'+size:'');
-    const shown=layout||demo.layouts[1];const cover=card.querySelector('[data-demo-cover]');cover.setAttribute('aria-label',demo.title+' · '+shown.label+'配置示例');card.querySelector('[data-demo-cover-label]').textContent=shown.label+'配置示例';card.querySelector('[data-demo-card-stations]').textContent=shown.stations+' 個體驗站';card.querySelector('[data-demo-card-duration]').textContent=shown.minutes+' 分鐘';
-   });
-   document.getElementById('demo-catalog-status').textContent='5 款示範方案 · '+(size==='all'?'可切換不同場地規模':button.textContent+'配置示例');
-  }));
- }
  const node=all('[data-demo-config]')[0];if(!node)return;
  const demo=JSON.parse(node.dataset.demoConfig),buttons=all('[data-demo-size]');
  let current=demo.layouts.find(l=>l.size===window.location.hash.slice(1))||demo.layouts[1];
